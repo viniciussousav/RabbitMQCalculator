@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D934771-6475-4738-999A-0735A0D62954}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQCalculator.WebApi", "src\RabbitMQCalculator.WebApi\RabbitMQCalculator.WebApi.csproj", "{7CDA003F-AD1C-44E1-9C94-34E66A31EB94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQCalculator.UseCases", "src\RabbitMQCalculator.UseCases\RabbitMQCalculator.UseCases.csproj", "{583A92D5-FC72-4767-A9D8-5BF43CFB5273}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQCalculator.Workers", "src\RabbitMQCalculator.Workers\RabbitMQCalculator.Workers.csproj", "{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{DD161EA5-0F51-4152-9C4A-7EB35826BD1F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CDA003F-AD1C-44E1-9C94-34E66A31EB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDA003F-AD1C-44E1-9C94-34E66A31EB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDA003F-AD1C-44E1-9C94-34E66A31EB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDA003F-AD1C-44E1-9C94-34E66A31EB94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583A92D5-FC72-4767-A9D8-5BF43CFB5273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583A92D5-FC72-4767-A9D8-5BF43CFB5273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583A92D5-FC72-4767-A9D8-5BF43CFB5273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583A92D5-FC72-4767-A9D8-5BF43CFB5273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7CDA003F-AD1C-44E1-9C94-34E66A31EB94} = {9D934771-6475-4738-999A-0735A0D62954}
+		{583A92D5-FC72-4767-A9D8-5BF43CFB5273} = {9D934771-6475-4738-999A-0735A0D62954}
+		{B1BA1B35-1CFB-41EE-880E-BE9453BEF2A6} = {9D934771-6475-4738-999A-0735A0D62954}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82D56BB0-E519-46C1-B225-90015DA1F8BA}
+	EndGlobalSection
+EndGlobal
