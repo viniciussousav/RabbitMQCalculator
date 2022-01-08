@@ -33,7 +33,6 @@ First, to run this project you need to have the programs below installed:
 	- <b> dotnet run -project RabbitMQCalculator.WebApi.csproj </b>
 	- <b> dotnet run -project RabbitMQCalculator.Workers.csproj </b>
 
-	<br> 
 
 4. If all previous steps got success:
 	- The WebApi is running at localhost:5001/swagger
