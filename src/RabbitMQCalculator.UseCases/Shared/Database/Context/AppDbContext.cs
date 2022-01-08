@@ -11,7 +11,7 @@ namespace RabbitMQCalculator.UseCases.Shared.Database.Context
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : base(options)
         {
-            _connectionString = configuration.GetConnectionString("ElephantSQLConnection");
+            _connectionString = configuration.GetConnectionString("Postgres");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

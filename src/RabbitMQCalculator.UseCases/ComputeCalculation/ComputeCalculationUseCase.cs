@@ -18,7 +18,7 @@ namespace RabbitMQCalculator.UseCases.ComputeCalculation
             }
         }
 
-        private double GetResult(double firstNumber, double secondNumber, char operation)
+        private static double GetResult(double firstNumber, double secondNumber, char operation)
         {
             if (operation == '/' && secondNumber == 0)
                 throw new ArgumentException("It not possible to divide by 0");

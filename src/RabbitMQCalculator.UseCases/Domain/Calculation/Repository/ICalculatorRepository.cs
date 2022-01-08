@@ -2,7 +2,7 @@
 {
     public interface ICalculatorRepository
     {
-        Task Create(CalculationEntity entity);
+        Task CreateAsync(CalculationEntity entity);
         Task<CalculationEntity> GetById(Guid id);
         Task Update(CalculationEntity entity);
     }

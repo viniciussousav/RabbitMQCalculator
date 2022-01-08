@@ -4,9 +4,9 @@ namespace RabbitMQCalculator.UseCases.Domain.Calculation
 {
     public class CalculationEntity
     {
-        public CalculationEntity(Guid guid, double firstNumber, double secondNumber, char @operator)
+        public CalculationEntity(double firstNumber, double secondNumber, char @operator)
         {
-            Guid = guid;
+            Guid = Guid.NewGuid();
             FirstNumber = firstNumber;
             SecondNumber = secondNumber;
             Operator = @operator;
@@ -22,28 +22,22 @@ namespace RabbitMQCalculator.UseCases.Domain.Calculation
         public string Error { get; private set; }
         public CalculationStatus Status{ get; private set; }
 
-        public void Confirm()
-        {
-            if(Status == CalculationStatus.Pending)
-                Status = CalculationStatus.Success;
-        }
-
-        public void Cancel()
-        {
-            if (Status == CalculationStatus.Pending)
-                Status = CalculationStatus.Failed;
-        }
-
         public void DefineResult(double result)
         {
             if (Status == CalculationStatus.Pending)
+            {
                 Result = result;
+                Status = CalculationStatus.Success;
+            }
         }
 
         public void SetError(string description)
         {
             if (Status == CalculationStatus.Pending)
+            {
                 Error = description;
+                Status = CalculationStatus.Failed;
+            }
         }
     }
 }

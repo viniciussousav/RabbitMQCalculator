@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using RabbitMQCalculator.UseCases.Domain.Calculation;
 using RabbitMQCalculator.UseCases.Domain.Calculation.Calculation.Repository;
 using RabbitMQCalculator.UseCases.SendCalculation.Models;
 using RabbitMQCalculator.UseCases.Shared.Services.CalculationProducer;
@@ -30,6 +29,11 @@ namespace RabbitMQCalculator.UseCases.SendCalculation
             _calculationProducer.Publish(calculationEvent);
 
             _logger.LogInformation("Calculation request published at {DateTime}", DateTime.Now);
+
+            var calculation = calculationEvent.MapToCalculation();
+            await _calculatorRepository.CreateAsync(calculation);
+
+            _logger.LogInformation("Calculation created in database at {DateTime}", DateTime.Now);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace RabbitMQCalculator.UseCases.Domain.Calculation.Calculation.Repository
             _contextFactory = contextFactory;
         }
 
-        public async Task Create(CalculationEntity entity)
+        public async Task CreateAsync(CalculationEntity entity)
         {
             using var ctx = await _contextFactory.CreateDbContextAsync();
             ctx.Calculations.Add(entity);

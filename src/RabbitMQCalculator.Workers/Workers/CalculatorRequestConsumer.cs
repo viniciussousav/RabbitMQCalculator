@@ -1,8 +1,10 @@
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQCalculator.UseCases.ComputeCalculation;
+using RabbitMQCalculator.UseCases.Domain.Calculation.Calculation.Repository;
 using RabbitMQCalculator.UseCases.SendCalculation.Models;
 using RabbitMQCalculator.UseCases.Shared.Constants;
+using RabbitMQCalculator.UseCases.Shared.Enums;
 using RabbitMQCalculator.UseCases.Shared.Services.CalculationProducer;
 using System.Text;
 using System.Text.Json;
@@ -14,6 +16,7 @@ namespace RabbitMQCalculator.Workers
         private readonly ILogger<CalculatorRequestConsumer> _logger;
         private readonly IComputeCalculationUseCase _computeCalculationUseCase;
         private readonly ICalculationProducer _calculationProducer;
+        private readonly ICalculatorRepository _calculatorRepository;
 
         private readonly IConnection _connection;
         private readonly IModel _channel;
@@ -22,11 +25,13 @@ namespace RabbitMQCalculator.Workers
             ILogger<CalculatorRequestConsumer> logger,
             IComputeCalculationUseCase computeCalculationUseCase,
             ICalculationProducer calculationProducer,
+            ICalculatorRepository calculatorRepository,
             IConfiguration configuration)
         {
             _logger = logger;
             _computeCalculationUseCase = computeCalculationUseCase;
             _calculationProducer = calculationProducer;
+            _calculatorRepository = calculatorRepository;
 
             var factory = new ConnectionFactory
             {
@@ -57,7 +62,7 @@ namespace RabbitMQCalculator.Workers
             _logger.LogInformation("ExecuteAsync started at {DateTime}", DateTime.Now);
 
             var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (sender, eventArgs) =>
+            consumer.Received += async (sender, eventArgs) =>
             {
                 try
                 {
@@ -70,6 +75,15 @@ namespace RabbitMQCalculator.Workers
                     _channel.BasicAck(eventArgs.DeliveryTag, false);
 
                     var result = _computeCalculationUseCase.Execute(eventRequest!);
+
+                    var calculation = await _calculatorRepository.GetById(eventRequest!.Id);
+                    
+                    if (result.Result.HasValue)
+                        calculation.DefineResult(result.Result.Value);
+                    else
+                        calculation.SetError(result.Error);
+
+                    await _calculatorRepository.Update(calculation);
                     _calculationProducer.Publish(result);
                 }
                 catch (Exception ex)

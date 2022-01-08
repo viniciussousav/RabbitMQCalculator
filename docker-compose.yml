@@ -13,10 +13,11 @@ services:
         - rabbitmq_go_net
 
   postgres:
-    image: postgres:10.5
+    image: postgres:14.1
     container_name: 'postgres'
     restart: always
     environment:
+        - POSTGRES_DB=RABBIT_CALCULATOR
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
     logging:
@@ -24,7 +25,7 @@ services:
         max-size: 10m
         max-file: "3"
     ports:
-        - '5438:5432'
+        - '6543:5432'
 
 networks:
   rabbitmq_go_net:
